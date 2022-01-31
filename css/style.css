@@ -40,8 +40,8 @@ body {
 canvas {
 	margin: 0;
 	display: flex;
+	margin-top: -2px;
 	border-radius: 10%/50%;
-	overflow: hidden;
 }
 .slotMachine {
 	background-color: red;

@@ -261,9 +261,11 @@ $("body").keyup(function (event) {
 let timerTouch;
 
 $(".controlField").on("touchstart", function(event) {
-	timerTouch = setInterval(() => longTouch(event), 1);
-	longTouch(event);
+	timerTouch = setInterval(() => longTouch(event), 50);
 });
+$(".controlField").on("click", function(event) {
+	longTouch(event);
+}
 $(".controlField").on("touchend", function(event) {
 	clearInterval(timerTouch);
 	car.move("stop");
