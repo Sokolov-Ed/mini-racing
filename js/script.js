@@ -257,15 +257,23 @@ $("body").keydown(function (event) {
 $("body").keyup(function (event) {
 	car.move("stop");
 });
+
+let timerTouch;
+
 $(".controlField").on("touchstart", function(event) {
-	if(event.target.closest('button')) {
-		car.move(`${event.target.id}`);
-	}
+	timerTouch = setInterval(() => longTouch(event), 1);
+	longTouch(event);
 });
 $(".controlField").on("touchend", function(event) {
+	clearInterval(timerTouch);
 	car.move("stop");
 });
 
+function longTouch(event) {
+	if(event.target.closest('button')) {
+		car.move(`${event.target.id}`);
+	}
+}
 
 let car = new MyCar(130, 350, "./icons/myCar.png");
 
@@ -324,6 +332,7 @@ OtherCars.prototype.move = function() {
 	if ($(".myCar").position().left >= self.x - $(".otherCar").height() + 25 && $(".myCar").position().left - $(".myCar").width() <= self.x - 25 
 		&& $(".myCar").position().top - $(".myCar").width() <= self.y  - 25 && $(".myCar").position().top >= self.y - $(".otherCar").width() - 17.5) {
 		isGameOver = true;
+		car.movementAllowed = false;
 		console.log("lose");
 		clearTimeout(roadIntervalID);
 		clearInterval(carsIntervalID);

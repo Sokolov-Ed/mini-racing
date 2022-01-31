@@ -31,10 +31,16 @@ body {
 	position: relative;
 	overflow: hidden;
 }
+.deviceScreen {
+	padding: 10px;
+	background-color: #333;
+	box-shadow: inset 0px 8px 16px black;
+	border-radius: 2.5%;
+}
 canvas {
 	margin: 0;
 	display: flex;
-	margin: -1px;
+	margin: -2px;
 	border-radius: 10%/50%;
 	overflow: hidden;
 }
@@ -84,12 +90,6 @@ canvas {
 	pointer-events: none;
 	user-select: none;
 	filter: invert(.3);
-}
-.deviceScreen {
-	padding: 10px;
-	background-color: #333;
-	box-shadow: inset 0px 8px 16px black;
-	border-radius: 2.5%;
 }
 .key_restart, .key_start {
 	width: 125px;
