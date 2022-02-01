@@ -28,8 +28,8 @@ function road() {
 function dividingLine() {
 	ctx.beginPath();
 	ctx.strokeStyle = "white";
-	ctx.setLineDash([10]);
-	ctx.lineDashOffset = 10;
+	ctx.setLineDash([20]);
+	ctx.lineDashOffset = 20;
 	ctx.lineWidth = 2;
 	ctx.moveTo(width / 2, roadMove);
 	ctx.lineTo(width / 2, height);
