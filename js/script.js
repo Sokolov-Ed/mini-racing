@@ -11,7 +11,17 @@ let isGameOver = false;
 let score = 0;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+	$(".description").css({display: "none"});
 	$(".controlField").css({display: "grid"});
+	$(".scoreBorder").css({
+		marginBottom: "-5px",
+		borderRadius: "10px 10px 0 0",
+		marginLeft: "0px"
+	});
+	$(".score").css({
+		width: "350px",
+		padding: "10px"
+	});
 }
 
 function backGround() {
@@ -243,7 +253,7 @@ let directions = {
 	40: "down"
 };
 
-let car = new MyCar(130, 350, "./icons/myCar.png");
+let car = new MyCar(250, 350, "./icons/myCar.png");
 
 let OtherCars = function(x, y, linkCar) {
 	this.x = x;
@@ -301,21 +311,23 @@ OtherCars.prototype.move = function() {
 		&& $(".myCar").position().top - $(".myCar").width() <= self.y  - 25 && $(".myCar").position().top >= self.y - $(".otherCar").width() - 17.5) {
 		isGameOver = true;
 		car.movementAllowed = false;
-		console.log("lose");
 		clearInterval(intervalID);
 		car.setDirection(false, false, false, false, true);
+		let gameOver = new GameOver(10, height / 3, "./icons/game_over.gif");
 		let explosion1 = new Explosion(self.x, self.y, "./icons/explosion.gif");
 		let explosion2 = new Explosion($(".myCar").position().left - 25, $(".myCar").position().top, "./icons/explosion.gif");
 	}
 	self.moveDown();
 	if(self.y > 550) {
-		self.y = -400;
+		let respawn = Math.floor(Math.random() * 2);
+		self.y = -425;
+		self.x = respawn === 1 ? 250 : 130;
 		self.isFirstOvertaking = false;
 	}
 }
 
 let otherCar1 = new OtherCars(130, -50, "./icons/otherCar.png");
-let otherCar2 = new OtherCars(250, -490, "./icons/otherCar.png");
+let otherCar2 = new OtherCars(250, -550, "./icons/otherCar.png");
 
 function start() {
 	intervalID = setInterval(function() {
@@ -325,15 +337,34 @@ function start() {
 	}, speed / 2);
 };
 
+let GameOver = function(x, y, link) {
+	this.x = x;
+	this.y = y;
+	this.draw(link);
+};
+GameOver.prototype.draw = function(link){
+	let gameOverHTML = `<img src=${link}>`;
+	this.gameOverElement = $(gameOverHTML);
+	this.gameOverElement.css({
+		position: "absolute",
+		width: "480px",
+		left: this.x,
+		top: this.y,
+		zIndex: "3",
+		borderRadius: "5%/50%"
+	});
+	$(".content").append(this.gameOverElement);
+};
+
 let Explosion = function(x, y, link) {
 	this.x = x;
 	this.y = y;
 	this.draw(link);
 }
 Explosion.prototype.draw = function(link){
-	let carHTML = `<img src=${link}>`;
-	this.carElement = $(carHTML);
-	this.carElement.css({
+	let explosionHTML = `<img src=${link}>`;
+	this.explosionElement = $(explosionHTML);
+	this.explosionElement.css({
 		position: "absolute",
 		width: "120px",
 		left: this.x,
@@ -341,7 +372,7 @@ Explosion.prototype.draw = function(link){
 		transform: 'rotate(-90deg)',
 		zIndex: "1"
 	});
-	$(".content").append(this.carElement);
+	$(".content").append(this.explosionElement);
 };
 
 $(".key_restart").on("click", function() {
@@ -370,7 +401,6 @@ $(".controlField").on("touchstart", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
 	timerTouch = setInterval(() => longTouch(event), 30);
-	longTouch(event);
 });
 $(".controlField").on("touchend", function(event) {
 	event.preventDefault();
