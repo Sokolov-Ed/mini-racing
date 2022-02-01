@@ -367,10 +367,14 @@ $("body").keyup(function (event) {
 let timerTouch;
 
 $(".controlField").on("touchstart", function(event) {
-	timerTouch = setInterval(() => longTouch(event), 100);
+	event.preventDefault();
+	event.stopPropagation();
+	timerTouch = setInterval(() => longTouch(event), 75);
 	longTouch(event);
 });
 $(".controlField").on("touchend", function(event) {
+	event.preventDefault();
+	event.stopPropagation();
 	clearInterval(timerTouch);
 	car.move("stop");
 });
