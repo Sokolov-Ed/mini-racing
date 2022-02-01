@@ -6,7 +6,7 @@ let speed = 8;
 let acceleration = 1;
 let isAcceleration = true;
 let roadMove = -60;
-let roadIntervalID, carsIntervalID;
+let intervalID;
 let isGameOver = false;
 let score = 0;
 
@@ -41,17 +41,14 @@ road();
 dividingLine();
 
 function roadAnimate() {
-	roadIntervalID = setTimeout(function() {
-		roadMove += acceleration;
-		ctx.clearRect(0, 0, width, height);
-		backGround()
-		road();
-		dividingLine();
-		if(roadMove >= -20) {
-			roadMove = -60;
-		}
-		roadAnimate();
-	}, speed / 4);
+	roadMove += acceleration + 1;
+	ctx.clearRect(0, 0, width, height);
+	backGround()
+	road();
+	dividingLine();
+	if(roadMove >= -20) {
+		roadMove = -60;
+	}
 }
 
 let MyCar = function(x, y, linkCar) {
@@ -246,37 +243,6 @@ let directions = {
 	40: "down"
 };
 
-$("body").keydown(function (event) {
-	if(!isGameOver) {
-		let newDirection = directions[event.keyCode];
-		if (newDirection !== undefined){
-			car.move(newDirection);
-		}
-	}
-});
-$("body").keyup(function (event) {
-	car.move("stop");
-});
-
-let timerTouch;
-
-$(".controlField").on("touchstart", function(event) {
-	timerTouch = setInterval(() => longTouch(event), 500);
-});
-$(".controlField").on("click", function(event) {
-	longTouch(event);
-});
-$(".controlField").on("touchend", function(event) {
-	clearInterval(timerTouch);
-	car.move("stop");
-});
-
-function longTouch(event) {
-	if(event.target.closest('button')) {
-		car.move(`${event.target.id}`);
-	}
-}
-
 let car = new MyCar(130, 350, "./icons/myCar.png");
 
 let OtherCars = function(x, y, linkCar) {
@@ -336,8 +302,7 @@ OtherCars.prototype.move = function() {
 		isGameOver = true;
 		car.movementAllowed = false;
 		console.log("lose");
-		clearTimeout(roadIntervalID);
-		clearInterval(carsIntervalID);
+		clearInterval(intervalID);
 		car.setDirection(false, false, false, false, true);
 		let explosion1 = new Explosion(self.x, self.y, "./icons/explosion.gif");
 		let explosion2 = new Explosion($(".myCar").position().left - 25, $(".myCar").position().top, "./icons/explosion.gif");
@@ -352,8 +317,9 @@ OtherCars.prototype.move = function() {
 let otherCar1 = new OtherCars(130, -50, "./icons/otherCar.png");
 let otherCar2 = new OtherCars(250, -490, "./icons/otherCar.png");
 
-function startCars() {
-	carsIntervalID = setInterval(function() {
+function start() {
+	intervalID = setInterval(function() {
+		roadAnimate();
 		otherCar1.move();
 		otherCar2.move();
 	}, speed / 2);
@@ -383,6 +349,34 @@ $(".key_restart").on("click", function() {
 });
 $(".key_start").on("click", function() {
 	car.movementAllowed = true;
-	roadAnimate();
-	startCars();
+	start();
 })
+
+$("body").keydown(function (event) {
+	if(!isGameOver) {
+		let newDirection = directions[event.keyCode];
+		if (newDirection !== undefined){
+			car.move(newDirection);
+		}
+	}
+});
+$("body").keyup(function (event) {
+	car.move("stop");
+});
+
+let timerTouch;
+
+$(".controlField").on("touchstart", function(event) {
+	timerTouch = setInterval(() => longTouch(event), 100);
+	longTouch(event);
+});
+$(".controlField").on("touchend", function(event) {
+	clearInterval(timerTouch);
+	car.move("stop");
+});
+
+function longTouch(event) {
+	if(event.target.closest('button')) {
+		car.move(`${event.target.id}`);
+	}
+}
