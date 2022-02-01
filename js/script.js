@@ -369,7 +369,7 @@ let timerTouch;
 $(".controlField").on("touchstart", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
-	timerTouch = setInterval(() => longTouch(event), 75);
+	timerTouch = setInterval(() => longTouch(event), 30);
 	longTouch(event);
 });
 $(".controlField").on("touchend", function(event) {
