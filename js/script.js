@@ -381,6 +381,9 @@ $(".key_restart").on("click", function() {
 $(".key_start").on("click", function() {
 	car.movementAllowed = true;
 	start();
+	$(".key_start").css({
+		pointerEvents: "none"
+	})
 })
 
 $("body").keydown(function (event) {
