@@ -284,8 +284,8 @@ OtherCars.prototype.moveDown = function(){
 };
 OtherCars.prototype.move = function() {
 	let self = this;
-	if(score > 0 && score % 9 === 0 && isAcceleration) {
-		acceleration += 0.5;
+	if(score > 0 && score % 5 === 0 && isAcceleration) {
+		acceleration += 0.1;
 		isAcceleration = false;
 	}
 	if(Math.ceil($(".myCar").position().top) + $(".myCar").width() <= Math.ceil(self.y)) {
@@ -308,7 +308,7 @@ OtherCars.prototype.move = function() {
 		})
 	}
 	if ($(".myCar").position().left >= self.x - $(".otherCar").height() + 25 && $(".myCar").position().left - $(".myCar").width() <= self.x - 25 
-		&& $(".myCar").position().top - $(".myCar").width() <= self.y  - 25 && $(".myCar").position().top >= self.y - $(".otherCar").width() - 17.5) {
+		&& $(".myCar").position().top - $(".myCar").width() <= self.y  - 30 && $(".myCar").position().top >= self.y - $(".otherCar").width() - 10) {
 		isGameOver = true;
 		car.movementAllowed = false;
 		clearInterval(intervalID);
