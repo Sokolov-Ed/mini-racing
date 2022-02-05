@@ -114,9 +114,9 @@ canvas {
 	"key_left keys_up_down key_right";
 	align-items: center;
 	justify-items: center;
-	box-shadow: inset 0px 5px 3px 5px #900020;
+	box-shadow: inset 0px 3px 3px 5px #900020;
 	border-radius: 50px 50px 0 0;
-	background-color: #e4e4e4;
+	background-color: #f0f0f0;
 }
 .controlField button, .keys_up_down {
 	display: flex;
