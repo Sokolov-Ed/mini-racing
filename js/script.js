@@ -12,7 +12,7 @@ let score = 0;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 	$(".description").css({display: "none"});
-	$(".slotMachine").css({marginBottom: "-5px", padding: "20px 25px 0px"});
+	$(".slotMachine").css({marginBottom: "-10px", padding: "20px 25px 0px"});
 	$(".controlField").css({display: "grid"});
 	$(".scoreBorder").css({
 		marginBottom: "-5px",
@@ -285,7 +285,7 @@ OtherCars.prototype.moveDown = function(){
 };
 OtherCars.prototype.move = function() {
 	let self = this;
-	if(score > 0 && score % 5 === 0 && isAcceleration) {
+	if(score > 0 && score % 3 === 0 && isAcceleration) {
 		acceleration += 0.1;
 		isAcceleration = false;
 	}
