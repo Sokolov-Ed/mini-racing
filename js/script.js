@@ -12,7 +12,7 @@ let score = 0;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 	$(".description").css({display: "none"});
-	$(".slotMachine").css({marginBottom: "-10px", padding: "20px 25px 0px"});
+	$(".slotMachine").css({marginBottom: "-15px", padding: "20px 25px 0px"});
 	$(".controlField").css({display: "grid"});
 	$(".scoreBorder").css({
 		marginBottom: "-5px",
@@ -224,6 +224,9 @@ MyCar.prototype.move = function(newDirection){
 				self.moveUp();
 			}
 		}
+		else {
+			self.stop();
+		}
 
 		if(newDirection === "stop") {
 			self.setDirection(false, false, false, false, true);
@@ -403,7 +406,11 @@ $("body").keyup(function (event) {
 $(".controlField").on("touchstart", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
-	timerTouch = setInterval(() => longTouch(event), 30);
+	timerTouch = setInterval(() => {
+		if(event.target.closest('button')) {
+			car.move(`${event.target.id}`);
+		}
+	}, 30);
 });
 $(".controlField").on("touchend", function(event) {
 	event.preventDefault();
@@ -411,9 +418,3 @@ $(".controlField").on("touchend", function(event) {
 	clearInterval(timerTouch);
 	car.move("stop");
 });
-
-function longTouch(event) {
-	if(event.target.closest('button')) {
-		car.move(`${event.target.id}`);
-	}
-}
