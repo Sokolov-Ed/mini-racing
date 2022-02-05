@@ -75,6 +75,14 @@ canvas {
 	display: flex;
 	border-radius: 5%/50%;
 }
+.keys_start_restart, .keys_start_restart button, .controlField button, .keys_up_down {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.keys_start_restart {
+	flex-direction: row;
+}
 .keys_start_restart button {
 	padding: 3px;
 	margin: 20px 50px;
@@ -89,7 +97,6 @@ canvas {
 }
 .keys_start_restart img {
 	width: 50px;
-	display: flex;
 	filter: invert(1);
 }
 .key_restart {
@@ -114,31 +121,25 @@ canvas {
 	"key_left keys_up_down key_right";
 	align-items: center;
 	justify-items: center;
-	box-shadow: inset 0px 1px 3px 5px #900020;
+	box-shadow: inset 0px 5px 5px 1px #900020;
 	border-radius: 50px 50px 0 0;
 	background-color: #fdfdfd;
 }
-.controlField button, .keys_up_down {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 .controlField button {
 	outline: none;
-	margin: 20px;
-	padding: 2px;
+	margin: 15px;
+	padding: 5px;
 	border-radius: 50%;
-	border: 5px solid #0000ff;
+	border: 5px solid #555;
 	width: max-content;
 	height: max-content;
-	background-color: #0000ff;
-	box-shadow: 0 0 3px white, 0 0 10px #0000ff;
+	background-color: transparent;
 }
 .controlField img {
 	height: 115px;
 	pointer-events: none;
 	user-select: none;
-	filter: invert(1);
+	filter: invert(.3);
 }
 .key_up {
 	grid-area: key_up;
