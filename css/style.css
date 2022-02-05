@@ -126,9 +126,9 @@ canvas {
 .controlField button {
 	outline: none;
 	margin: 20px;
-	padding: 5px;
+	padding: 2px;
 	border-radius: 50%;
-	border: 5px solid white;
+	border: 5px solid red;
 	width: max-content;
 	height: max-content;
 	background-color: red;
