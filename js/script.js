@@ -12,7 +12,7 @@ let score = 0;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 	$(".description").css({display: "none"});
-	$(".slotMachine").css({marginBottom: "-10px"});
+	$(".slotMachine").css({marginBottom: "-5px"});
 	$(".controlField").css({display: "grid"});
 	$(".scoreBorder").css({
 		marginBottom: "-5px",

@@ -61,6 +61,7 @@ body {
 	position: relative;
 	overflow: hidden;
 	filter: grayscale(75%);
+	max-height: max-content;
 }
 .rain {
 	position: absolute;
