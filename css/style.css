@@ -1,10 +1,12 @@
+html, body {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
 html{
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
 	flex-direction: row;
 	text-align: center;
 	font-family: 'DS-Digital';
@@ -12,9 +14,6 @@ html{
 }
 body {
 	margin: 0;
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
 	flex-direction: row;
 	flex-wrap: wrap;
 	background: steelblue
@@ -41,10 +40,21 @@ body {
 	text-shadow: 0 0 5px #fff, 0 0 10px green;
 	user-select: none;
 }
-canvas {
-	margin: -5px 0;
-	display: flex;
-	border-radius: 5%/50%;
+.slotMachine {
+	background-color: red;
+	margin-bottom: 0;
+	height: max-content;
+	padding: 20px 25px 10px;
+	margin: 0;
+	border-radius: 2.5% 2.5% 0 0;
+	box-shadow: -13px 11px 25px 9px rgba(34, 60, 80, 0.63);
+	filter: grayscale(10%);
+}
+.deviceScreen {
+	padding: 15px;
+	background-color: #444;
+	box-shadow: inset 0px 0px 40px black;
+	border-radius: 2.5%;
 }
 .content {
 	border-radius: 50%/5%;
@@ -60,71 +70,12 @@ canvas {
 	height: 500px;
 	z-index: 2;
 }
-.deviceScreen {
-	padding: 15px;
-	background-color: #444;
-	box-shadow: inset 0px 0px 40px black;
-	border-radius: 2.5%;
-}
-.slotMachine {
-	background-color: red;
-	margin-bottom: 0;
-	height: max-content;
-	padding: 20px 25px 10px;
-	margin: 0;
-	border-radius: 2.5% 2.5% 0 0;
-	box-shadow: -13px 11px 25px 9px rgba(34, 60, 80, 0.63);
-	filter: grayscale(10%);
-}
-.controlField {
-	display: none;
-	grid-template-areas:
-	"key_left keys_up_down key_right";
-	align-items: center;
-	justify-items: center;
-	box-shadow: inset 0px 5px 3px #900020;
-	border-radius: 50px 50px 0 0;
-}
-.key_up {
-	grid-area: key_up;
-}
-.key_right {
-	grid-area: key_right;
-}
-.controlField button {
-	outline: none;
+canvas {
+	margin: -5px 0;
 	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: transparent;
-	margin: 15px;
-	padding: 5px;
-	border-radius: 50%;
-	border: 5px solid #333;
-	width: max-content;
-	height: max-content;
+	border-radius: 5%/50%;
 }
-.keys_up_down {
-	grid-area: keys_up_down;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	background-color: transparent;
-	padding: 5px 0;
-	width: max-content;
-	height: max-content;
-}
-.controlField img {
-	height: 115px;
-	pointer-events: none;
-	user-select: none;
-	filter: invert(.3);
-}
-
-.key_restart, .key_start {
-	width: max-content;
-	height: max-content;
+.keys_start_restart button {
 	padding: 3px;
 	margin: 20px 50px;
 	border-radius: 50%;
@@ -133,8 +84,10 @@ canvas {
 	border: none;
 	transition: .25s;
 	outline: none;
+	width: max-content;
+	height: max-content;
 }
-.key_restart img, .key_start img {
+.keys_start_restart img {
 	width: 50px;
 	display: flex;
 	filter: invert(1);
@@ -155,15 +108,61 @@ canvas {
 	box-shadow: 0 0 2px white, 0 0 4px #00ff00, 0 0 8px white;
 	background-color: #4aea37;
 }
-.description {
+.controlField {
+	display: none;
+	grid-template-areas:
+	"key_left keys_up_down key_right";
+	align-items: center;
+	justify-items: center;
+	box-shadow: inset 0px 5px 3px #900020;
+	border-radius: 50px 50px 0 0;
+	background-color: #e6e6e6;
+}
+.controlField button, .keys_up_down {
 	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.controlField button {
+	outline: none;
+	margin: 15px;
+	padding: 5px;
+	border-radius: 50%;
+	border: 5px solid #555;
+	width: max-content;
+	height: max-content;
+	background-color: red;
+}
+.controlField img {
+	height: 115px;
+	pointer-events: none;
+	user-select: none;
+	filter: invert(.3);
+}
+.key_up {
+	grid-area: key_up;
+}
+.key_right {
+	grid-area: key_right;
+}
+.keys_up_down {
+	grid-area: keys_up_down;
+	flex-direction: column;
+	background-color: transparent;
+	padding: 5px 0;
+	width: max-content;
+	height: max-content;
+}
+.description {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 	padding: 25px 15px;
 	left: auto;
-	right: -10px;
-	top: -10px;
-	bottom: auto;
-	position: absolute;
+	right: 0;
+	height: 100%;
 	background-color: #111;
 	font-size: 30px;
 	color: #fff;
@@ -171,12 +170,12 @@ canvas {
 	pointer-events: none;
 	text-shadow: 0 0 2px white, 0 0 4px #00ff00, 0 0 8px white;
 	box-shadow: -13px 11px 25px 9px rgba(34, 60, 80, 0.63);
-	border: 10px solid #b00000;
-	border-radius: 0 0 0 25%;
+	border-left: 10px solid #b00000;
 }
 .description img {
 	width: 300px;
 	filter: invert(1);
+	margin: 20px 0;
 }
 @font-face {
 	font-family: 'DS-Digital';

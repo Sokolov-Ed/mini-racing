@@ -6,12 +6,13 @@ let speed = 8;
 let acceleration = 1;
 let isAcceleration = true;
 let roadMove = -60;
-let intervalID;
+let intervalID, timerTouch;
 let isGameOver = false;
 let score = 0;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 	$(".description").css({display: "none"});
+	$(".slotMachine").css({marginBottom: "-5px", padding: "20px 25px 0px"});
 	$(".controlField").css({display: "grid"});
 	$(".scoreBorder").css({
 		marginBottom: "-5px",
@@ -46,7 +47,7 @@ function dividingLine() {
 	ctx.stroke();
 }
 
-backGround()
+backGround();
 road();
 dividingLine();
 
@@ -133,7 +134,7 @@ MyCar.prototype.move = function(newDirection){
 		if (self.isStopDirection) {
 			self.stop();
 		}
-		if ((self.x > 100 && self.x < 280) && (self.y > 40 && self.y < 380) ) {
+		if ((self.x > 110 && self.x < 270) && (self.y > 40 && self.y < 380) ) {
 			if (self.isUpDirection) {
 				self.moveUp();
 			}
@@ -147,7 +148,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
-		else if (self.x <= 100 && (self.y > 40 && self.y < 380)) {
+		else if (self.x <= 110 && (self.y > 40 && self.y < 380)) {
 			if (self.isUpDirection) {
 				self.moveUp();
 			}
@@ -158,7 +159,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
-		else if (self.x >= 280 && (self.y > 40 && self.y < 380)) {
+		else if (self.x >= 270 && (self.y > 40 && self.y < 380)) {
 			if (self.isUpDirection) {
 				self.moveUp();
 			}
@@ -169,7 +170,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
-		else if (self.y <= 40 && (self.x > 100 && self.x < 280)) {
+		else if (self.y <= 40 && (self.x > 110 && self.x < 270)) {
 			if (self.isRightDirection) {
 				self.moveRight();
 			}
@@ -180,7 +181,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
-		else if (self.y >= 380 && (self.x > 100 && self.x < 280)) {
+		else if (self.y >= 380 && (self.x > 110 && self.x < 270)) {
 			if (self.isRightDirection) {
 				self.moveRight();
 			}
@@ -191,7 +192,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveUp();
 			}
 		}
-		else if (self.x <= 100 && self.y <= 40) {
+		else if (self.x <= 110 && self.y <= 40) {
 			if (self.isRightDirection) {
 				self.moveRight();
 			}
@@ -199,7 +200,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
-		else if (self.x >= 280 && self.y <= 40) {
+		else if (self.x >= 270 && self.y <= 40) {
 			if (self.isLeftDirection) {
 				self.moveLeft();
 			}
@@ -207,7 +208,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
-		else if (self.x <= 100 && self.y >= 380) {
+		else if (self.x <= 110 && self.y >= 380) {
 			if (self.isRightDirection) {
 				self.moveRight();
 			}
@@ -215,7 +216,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveUp();
 			}
 		}
-		else if (self.x >= 280 && self.y >= 380) {
+		else if (self.x >= 270 && self.y >= 380) {
 			if (self.isLeftDirection) {
 				self.moveLeft();
 			}
@@ -397,8 +398,6 @@ $("body").keydown(function (event) {
 $("body").keyup(function (event) {
 	car.move("stop");
 });
-
-let timerTouch;
 
 $(".controlField").on("touchstart", function(event) {
 	event.preventDefault();
