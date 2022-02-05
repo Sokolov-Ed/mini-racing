@@ -148,6 +148,38 @@ MyCar.prototype.move = function(newDirection){
 				self.moveDown();
 			}
 		}
+		else if (self.x <= 110 && self.y <= 40) {
+			if (self.isRightDirection) {
+				self.moveRight();
+			}
+			else if (self.isDownDirection) {
+				self.moveDown();
+			}
+		}
+		else if (self.x >= 270 && self.y <= 40) {
+			if (self.isLeftDirection) {
+				self.moveLeft();
+			}
+			else if (self.isDownDirection) {
+				self.moveDown();
+			}
+		}
+		else if (self.x <= 110 && self.y >= 380) {
+			if (self.isRightDirection) {
+				self.moveRight();
+			}
+			else if (self.isUpDirection) {
+				self.moveUp();
+			}
+		}
+		else if (self.x >= 270 && self.y >= 380) {
+			if (self.isLeftDirection) {
+				self.moveLeft();
+			}
+			else if (self.isUpDirection) {
+				self.moveUp();
+			}
+		}
 		else if (self.x <= 110 && (self.y > 40 && self.y < 380)) {
 			if (self.isUpDirection) {
 				self.moveUp();
@@ -192,38 +224,7 @@ MyCar.prototype.move = function(newDirection){
 				self.moveUp();
 			}
 		}
-		else if (self.x <= 110 && self.y <= 40) {
-			if (self.isRightDirection) {
-				self.moveRight();
-			}
-			else if (self.isDownDirection) {
-				self.moveDown();
-			}
-		}
-		else if (self.x >= 270 && self.y <= 40) {
-			if (self.isLeftDirection) {
-				self.moveLeft();
-			}
-			else if (self.isDownDirection) {
-				self.moveDown();
-			}
-		}
-		else if (self.x <= 110 && self.y >= 380) {
-			if (self.isRightDirection) {
-				self.moveRight();
-			}
-			else if (self.isUpDirection) {
-				self.moveUp();
-			}
-		}
-		else if (self.x >= 270 && self.y >= 380) {
-			if (self.isLeftDirection) {
-				self.moveLeft();
-			}
-			else if (self.isUpDirection) {
-				self.moveUp();
-			}
-		}
+
 		if(newDirection === "stop") {
 			self.setDirection(false, false, false, false, true);
 			newDirection = '';
