@@ -63,14 +63,6 @@ body {
 	filter: grayscale(75%);
 	max-height: max-content;
 }
-.rain {
-	position: absolute;
-	display: flex;
-	border-radius: 5%/50%;
-	width: 500px;
-	height: 500px;
-	z-index: 2;
-}
 canvas {
 	margin: -5px 0;
 	display: flex;
@@ -124,23 +116,23 @@ canvas {
 	justify-items: center;
 	box-shadow: inset 0px 5px 5px 1px #900020;
 	border-radius: 50px 50px 0 0;
-	background-color: #fdfdfd;
+	background-color: rgba(183, 65, 14, .3);
 }
 .controlField button {
 	outline: none;
 	margin: 15px;
 	padding: 5px;
 	border-radius: 50%;
-	border: 5px solid #555;
+	border: 5px solid black;
 	width: max-content;
 	height: max-content;
 	background-color: transparent;
+	filter: invert(.7);
 }
 .controlField img {
 	height: 115px;
 	pointer-events: none;
 	user-select: none;
-	filter: invert(.3);
 }
 .key_up {
 	grid-area: key_up;
