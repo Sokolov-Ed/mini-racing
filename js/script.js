@@ -2,7 +2,6 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let width = canvas.width;
 let height = canvas.height;
-let speed = 8;
 let acceleration = 1;
 let isAcceleration = true;
 let roadMove = -60;
@@ -52,7 +51,7 @@ road();
 dividingLine();
 
 function roadAnimate() {
-	roadMove += acceleration + 1;
+	roadMove += (acceleration + .5);
 	ctx.clearRect(0, 0, width, height);
 	backGround()
 	road();
@@ -289,14 +288,13 @@ OtherCars.prototype.moveDown = function(){
 };
 OtherCars.prototype.move = function() {
 	let self = this;
-	if(score > 0 && score % 3 === 0 && isAcceleration) {
+	if(score > 0 && score % 2 === 0 && isAcceleration) {
 		acceleration += 0.1;
 		isAcceleration = false;
 	}
 	if(Math.ceil($(".myCar").position().top) + $(".myCar").width() <= Math.ceil(self.y)) {
 		if(!self.isFirstOvertaking) {
 			++score;
-			--speed;
 			$(".score").text(`Score: ${score}`);
 			self.isFirstOvertaking = true;
 			isAcceleration = true;
@@ -316,7 +314,7 @@ OtherCars.prototype.move = function() {
 		&& $(".myCar").position().top - $(".myCar").width() <= self.y  - 30 && $(".myCar").position().top >= self.y - $(".otherCar").width() - 10) {
 		isGameOver = true;
 		car.movementAllowed = false;
-		clearInterval(intervalID);
+		clearTimeout(intervalID);
 		car.setDirection(false, false, false, false, true);
 		let gameOver = new GameOver(10, height / 3, "./icons/game_over.gif");
 		let explosion1 = new Explosion(self.x, self.y, "./icons/explosion.gif");
@@ -335,11 +333,12 @@ let otherCar1 = new OtherCars(130, -50, "./icons/otherCar.png");
 let otherCar2 = new OtherCars(250, -550, "./icons/otherCar.png");
 
 function start() {
-	intervalID = setInterval(function() {
+	intervalID = setTimeout(function() {
 		roadAnimate();
 		otherCar1.move();
 		otherCar2.move();
-	}, speed / 2);
+		start();
+	}, 1);
 };
 
 let GameOver = function(x, y, link) {
