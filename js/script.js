@@ -314,7 +314,7 @@ OtherCars.prototype.move = function() {
 		&& $(".myCar").position().top - $(".myCar").width() <= self.y  - 30 && $(".myCar").position().top >= self.y - $(".otherCar").width() - 10) {
 		isGameOver = true;
 		car.movementAllowed = false;
-		clearTimeout(intervalID);
+		clearInterval(intervalID);
 		car.setDirection(false, false, false, false, true);
 		let gameOver = new GameOver(10, height / 3, "./icons/game_over.gif");
 		let explosion1 = new Explosion(self.x, self.y, "./icons/explosion.gif");
@@ -333,12 +333,11 @@ let otherCar1 = new OtherCars(130, -50, "./icons/otherCar.png");
 let otherCar2 = new OtherCars(250, -550, "./icons/otherCar.png");
 
 function start() {
-	intervalID = setTimeout(function() {
+	intervalID = setInterval(function() {
 		roadAnimate();
 		otherCar1.move();
 		otherCar2.move();
-		start();
-	}, 1);
+	}, 15);
 };
 
 let GameOver = function(x, y, link) {
