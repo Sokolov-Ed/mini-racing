@@ -290,6 +290,7 @@ OtherCars.prototype.move = function() {
 	let self = this;
 	if(score > 0 && score % 2 === 0 && isAcceleration) {
 		acceleration += 0.1;
+		console.log(acceleration);
 		isAcceleration = false;
 	}
 	if(Math.ceil($(".myCar").position().top) + $(".myCar").width() <= Math.ceil(self.y)) {
@@ -337,7 +338,7 @@ function start() {
 		roadAnimate();
 		otherCar1.move();
 		otherCar2.move();
-	}, 15);
+	}, 7);
 };
 
 let GameOver = function(x, y, link) {
