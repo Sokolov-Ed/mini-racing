@@ -338,7 +338,7 @@ function start() {
 		roadAnimate();
 		otherCar1.move();
 		otherCar2.move();
-	}, 7);
+	}, 6);
 };
 
 let GameOver = function(x, y, link) {
@@ -405,6 +405,7 @@ $("body").keyup(function (event) {
 $(".controlField").on("touchstart", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
+	$(".controlField").css({pointerEvents: "none"});
 	timerTouch = setInterval(() => {
 		if(event.target.closest('button')) {
 			car.move(`${event.target.id}`);
@@ -414,6 +415,7 @@ $(".controlField").on("touchstart", function(event) {
 $(".controlField").on("touchend", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
+	$(".controlField").css({pointerEvents: "auto"});
 	clearInterval(timerTouch);
 	car.move("stop");
 });
