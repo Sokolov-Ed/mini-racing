@@ -78,7 +78,6 @@ body {
 }
 canvas {
 	position: absolute;
-	margin: -5px 0;
 	display: flex;
 	z-index: 1;
 }
