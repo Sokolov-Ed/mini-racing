@@ -387,20 +387,20 @@ $("body").keyup(function (event) {
 	car.move("stop");
 });
 
-$(".controlField").on("touchstart", function(event) {
+$(".control_field").on("touchstart", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
-	$(".controlField").css({pointerEvents: "none"});
+	$(".control_field").css({pointerEvents: "none"});
 	timerTouch = setInterval(() => {
 		if(event.target.closest('button')) {
 			car.move(`${event.target.id}`);
 		}
 	}, 30);
 });
-$(".controlField").on("touchend", function(event) {
+$(".control_field").on("touchend", function(event) {
 	event.preventDefault();
 	event.stopPropagation();
-	$(".controlField").css({pointerEvents: "auto"});
+	$(".control_field").css({pointerEvents: "auto"});
 	clearInterval(timerTouch);
 	car.move("stop");
 });
