@@ -24,17 +24,6 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone
 	});
 }
 
-function backGround() {
-	ctx.fillStyle = "#c5dd73";
-	ctx.strokeStyle = "#c5dd73";
-	ctx.fillRect(0, 0, width, height);
-}
-
-function road() {
-	ctx.fillStyle = "#555";
-	ctx.fillRect(width / 4, 0, width / 2, height);
-}
-
 function dividingLine() {
 	ctx.beginPath();
 	ctx.strokeStyle = "white";
@@ -46,15 +35,11 @@ function dividingLine() {
 	ctx.stroke();
 }
 
-backGround();
-road();
 dividingLine();
 
 function roadAnimate() {
 	roadMove += (acceleration + .5);
 	ctx.clearRect(0, 0, width, height);
-	backGround()
-	road();
 	dividingLine();
 	if(roadMove >= -20) {
 		roadMove = -60;

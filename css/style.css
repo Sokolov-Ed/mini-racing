@@ -20,7 +20,7 @@ body {
     linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.2) 50%) center center /
     100% 4em;
 }
-.scoreBorder {
+.score_border {
 	padding: 10px;
 	background-color: red;
 	margin-bottom: 45%;
@@ -40,7 +40,7 @@ body {
 	text-shadow: 0 0 5px #fff, 0 0 10px green;
 	user-select: none;
 }
-.slotMachine {
+.slot_machine {
 	background-color: red;
 	margin-bottom: 0;
 	height: max-content;
@@ -50,7 +50,7 @@ body {
 	box-shadow: -13px 11px 25px 9px rgba(34, 60, 80, 0.63);
 	filter: grayscale(10%);
 }
-.deviceScreen {
+.device_screen {
 	padding: 15px;
 	background-color: #444;
 	box-shadow: inset 0px 0px 40px black;
@@ -63,10 +63,24 @@ body {
 	filter: grayscale(75%);
 	max-height: max-content;
 }
+.earth {
+	width: 500px;
+	height: 500px;
+	background-color: #c5dd73;
+	border-radius: 5%/50%;
+}
+.road {
+	position: absolute;
+	width: 250px;
+	height: 500px;
+	background-color: #555;
+	margin-left: 125px;
+}
 canvas {
+	position: absolute;
 	margin: -5px 0;
 	display: flex;
-	border-radius: 5%/50%;
+	z-index: 1;
 }
 .keys_start_restart, .keys_start_restart button, .controlField button, .keys_up_down {
 	display: flex;
@@ -108,7 +122,7 @@ canvas {
 	box-shadow: 0 0 2px white, 0 0 4px #00ff00, 0 0 8px white;
 	background-color: #4aea37;
 }
-.controlField {
+.control_field {
 	display: none;
 	grid-template-areas:
 	"key_left keys_up_down key_right";
@@ -118,7 +132,7 @@ canvas {
 	border-radius: 50px 50px 0 0;
 	background-color: rgba(183, 65, 14, .3);
 }
-.controlField button {
+.control_field button {
 	outline: none;
 	margin: 15px;
 	padding: 5px;
@@ -129,7 +143,7 @@ canvas {
 	background-color: transparent;
 	filter: invert(.7);
 }
-.controlField img {
+.control_field img {
 	height: 115px;
 	pointer-events: none;
 	user-select: none;
