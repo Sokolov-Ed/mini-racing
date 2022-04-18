@@ -11,9 +11,9 @@ let score = 0;
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 	$(".description").css({display: "none"});
-	$(".slotMachine").css({marginBottom: "-5px"});
-	$(".controlField").css({display: "grid"});
-	$(".scoreBorder").css({
+	$(".slot_machine").css({marginBottom: "-5px"});
+	$(".control_field").css({display: "grid"});
+	$(".score_border").css({
 		marginBottom: "-5px",
 		borderRadius: "10px 10px 0 0",
 		marginLeft: "0px"
