@@ -81,7 +81,7 @@ canvas {
 	display: flex;
 	z-index: 1;
 }
-.keys_start_restart, .keys_start_restart button, .controlField button, .keys_up_down {
+.keys_start_restart, .keys_start_restart button, .control_field button, .keys_up_down {
 	display: flex;
 	align-items: center;
 	justify-content: center;
